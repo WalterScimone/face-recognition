@@ -56,7 +56,7 @@ const ImageUploadForm = (props) => {
     }
 
     return (
-        <Form className="my-4">
+        <Form onSubmit={handleSubmit} className="my-4">
             <Form.Row className="text-left">
                 <Form.Group>
                     <Form.Label>Gallery</Form.Label>
