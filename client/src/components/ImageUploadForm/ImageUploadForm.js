@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react'
 import { Form, FormControl, Button, } from 'react-bootstrap'
 import classes from './ImageUploadForm.module.css'
+import axios from 'axios'
 
 const ImageUploadForm = (props) => {
     let [galleryName, setGalleryName] = useState('friend') // set starting value to 'friend'
@@ -27,6 +28,32 @@ const ImageUploadForm = (props) => {
             setFileSrc(e.target.value)
         }
     }, [props.type])
+
+    const handleSubmit = (e) => {
+        e.preventDefault() // will stop the page from refreshing on submit
+        
+        // set alert variable to null
+        // constructs data payload
+        let data = {
+            gallery_name: galleryName,
+            image: fileSrc
+        }
+        // adds subject_id if we are enrolling a new person
+        if (props.endpoint === 'enroll') {
+            data = {
+                ...data, // spread operater - add all the properties in the previously declared data object to this object
+                subject_id: name
+            }
+        }
+        console.log(data) // log the data to make sure that it is beng sent the way we want
+        axios.post(`/api/upload/${props.endpoint}`, data)
+        .then(response => {
+            // set alert variable
+        })
+        .catch(e => {
+            //set alert variable
+        })
+    }
 
     return (
         <Form className="my-4">
@@ -86,6 +113,7 @@ const ImageUploadForm = (props) => {
             {fileSrc ? <figure><img className={classes.Image} alt="" src={fileSrc} /></figure> : <p style={{ color: "#CCC" }}>No image to preview</p>}
         </Form>
     )
+    
 }
 
 export default ImageUploadForm
