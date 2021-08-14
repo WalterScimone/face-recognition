@@ -2,9 +2,9 @@ import React, { useState, useCallback } from 'react'
 import { Form, Button, FormControl} from 'react-bootstrap' 
 import classes from './ImageUploadForm.module.css' 
 import axios from 'axios' 
-import Message from '../Message/Message' // NEW 
+import Message from '../Message/Message' 
 const ImageUploadForm = (props) => { 
-    let [alert, setAlert] = useState(null) // NEW 
+    let [alert, setAlert] = useState(null) 
     let [file, setFile] = useState(null) 
     let [fileSrc, setFileSrc] = useState('') 
     let [galleryName, setGalleryName] = useState('friend')
@@ -18,7 +18,7 @@ const ImageUploadForm = (props) => {
             try {
                 reader.readAsDataURL(e.target.files[0])
             } catch (e) {
-                setAlert({variant:'danger', text:'Please select valid image.'})  // NEW
+                setAlert({variant:'danger', text:'Please select valid image.'})  
                 setFileSrc('')
             }
     
@@ -32,7 +32,7 @@ const ImageUploadForm = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         
-        setAlert(null)             // NEW
+        setAlert(null)             
         let data = {
             gallery_name: galleryName,
             image: fileSrc
@@ -45,15 +45,15 @@ const ImageUploadForm = (props) => {
         }
         axios.post(`/api/upload/${props.endpoint}`, data)
         .then(response => {
-            setAlert(response.data)     // NEW
+            setAlert(response.data)     
         })
         .catch(e => {
-            setAlert(e.response.data)   // NEW
+            setAlert(e.response.data)   
         })
     }
     return (
         <Form onSubmit={handleSubmit} className="my-4">
-            {alert && <Message message={alert} />}          // NEW
+            {alert && <Message message={alert} />}          
             <Form.Row className="text-left">
                 <Form.Group>
                     <Form.Label>Gallery</Form.Label>

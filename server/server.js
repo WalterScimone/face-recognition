@@ -12,9 +12,9 @@ app.use(express.json({ limit: '10000kb' }));
 // Set route middleware
 app.use('/api/upload', uploadRouter) 
 // Future route
-// app.use('/api/', router);
+ //app.use('/api/', router);
 // DEPLOYMENT: for express to find static assets in the React build
-// app.use(express.static(path.resolve('client', 'build')));
+app.use(express.static(path.resolve('client', 'build')));
 // DEPLOYMENT: so express can return an actual webpage
  app.get('*', (req, res) => {
       res.sendFile(path.resolve('client', 'build', 'index.html'));
