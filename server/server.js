@@ -1,7 +1,7 @@
 // server.js
 const express = require('express');
 const path = require('path');
-require('dotenv').config()
+require('dotenv').config();
 // Import routes
 const uploadRouter = require('./src/routes/upload')
 // Create App
