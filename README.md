@@ -1,10 +1,8 @@
-# Getting Started with Create React App
+# Face-recognition App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## About
 
-## Available Scripts
-
-In the project directory, you can run:
+A React application for mobile face-recognition proof-of-concept.
 
 ### `npm start`
 
